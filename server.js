@@ -8,26 +8,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-/* MongoDB connection
+// MongoDB connection
 mongoose.connect('mongodb+srv://missari:missari123@cluster0.2uqs2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('Connected to MongoDB'))
-.catch((error) => console.error('MongoDB connection error:', error)); */
-
-//
-
-// MongoDB connection
-const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://missari:missari123@cluster0.2uqs2.mongodb.net/mydatabase?retryWrites=true&w=majority
-';
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('Connected to MongoDB'))
 .catch((error) => console.error('MongoDB connection error:', error));
-
 
 // Define User schema
 const userSchema = new mongoose.Schema({
@@ -68,9 +55,7 @@ app.post('/submit-form', async (req, res) => {
   }
 });
 
-
 // Start the server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on http://0.0.0.0:${PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-
